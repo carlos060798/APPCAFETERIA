@@ -1,0 +1,175 @@
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: Arial, Helvetica, sans-serif;
+} 
+h2{
+text-align: center;
+font-weight: 800;
+font-size: 2rem;
+}
+main{
+    display: flex;
+    justify-content: center;
+}
+.container{
+width: 700px;
+margin: 40px;
+border: 2px groove blue;
+border-radius: 15px;
+
+height: auto;
+}
+.titulo{
+    margin-top: 15px;
+    font-size: 3rem;
+    font-weight: 700;
+    font-style: italic;
+ text-align: center;
+}
+.subtitulo{
+
+ text-align: center;
+ padding-bottom: 20px;
+}
+.uno{
+    height: 200px;
+    display: flex;
+    background-color: rgb(61, 119, 243);
+    color: white;
+}
+
+.info_personal{
+    width: 70%;
+    
+}
+.info_personal h4,p{
+    padding-left:15px;
+ }
+ p a{
+ text-decoration: none;
+ color:rgb(255, 255, 255);
+ cursor: pointer;
+ }
+ p a:hover{
+  color: blue;
+ }
+ spam{
+  padding-left: 5px;
+ }
+.img_personal{
+    width: 30%;
+    height: 100px;
+    margin: 15px;
+   
+    
+}
+
+.img_personal img{
+    margin-top: 30px;
+    width: 100%;
+    border-radius: 50%;
+    height:100%;
+   
+
+}
+.experiencia{
+    height: 150px;
+    
+}
+.expert{
+    margin-top: 20px;
+    padding-left:15px;
+}
+
+.expert ul{
+ padding-left:15px;
+ font-style: bold;
+}
+.habilidades {
+    height: auto;
+    border: 2px solid rgb(163, 163, 161);  
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+
+}
+.habilidades table {
+    border-collapse: collapse;
+    width: 50%;
+    margin-bottom: 30px;
+  }
+
+.habilidades  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #afa8a8;
+    color: black;
+  }
+ 
+  
+.habilidades  tr:hover {background-color: rgb(49, 19, 219);
+color: white;}
+.interes{
+    margin-left: 15px;
+   
+}
+.interes table {
+    border-collapse: collapse;
+    width: 50%;
+    margin-bottom: 30px;
+  }
+
+.interes  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #afa8a8;
+  }
+  .interes  tr:hover {background-color: rgb(49, 19, 219);}
+ 
+.contacto{
+
+height: 300px;
+display: flex;
+justify-content: center;
+
+}
+
+form{
+margin: 40px;
+border-radius: 15px;
+border: 2px solid rgb(214, 214, 214);   
+width: 400px;
+height: 200px;
+display: flex;
+flex-direction: column;
+align-items: center;
+background-color: rgb(214, 214, 214);
+}
+label{
+margin-top: 15px;
+margin-bottom: 15px;
+}
+input,textarea{
+ width: 90%;
+
+}
+
+textarea{
+  height: 80px;
+  padding-bottom: 15px;
+}
+button{
+    margin: 15px;
+    width: 30%;
+    height: 40px;
+    border:none;
+    background-color: rgb(15, 18, 211);
+    border-radius: 16px;
+    color:white;
+    font-size: 1rem;
+    
+    
+     
+}
