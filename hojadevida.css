@@ -2,47 +2,86 @@
  margin: 0;
  padding: 0;
  box-sizing: border-box;
- font-family: Arial, Helvetica, sans-serif;
+ font-family: 'Roboto', sans-serif;
 } 
-h2{
+h1{
 text-align: center;
 font-weight: 800;
 font-size: 2rem;
 }
 main{
-    display: flex;
-    justify-content: center;
+    margin: 30px;
+ display: flex;
+ justify-content: center;
 }
-.container{
-width: 700px;
-margin: 40px;
-border: 2px groove blue;
-border-radius: 15px;
 
-height: auto;
+.container{
+ border: solid 1px  rgb(214, 214, 214); 
+ width: 900px; 
+ height: auto;
+ display: flex;
 }
-.titulo{
-    margin-top: 15px;
-    font-size: 3rem;
-    font-weight: 700;
-    font-style: italic;
- text-align: center;
+.hoja{
+ width: 100%;
+ height: 100%;
+ display: flex;
+}
+.Infoperosnal{
+    background:  rgb(66, 91, 228);
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: antiquewhite;
+
+}
+.general{
+
+ height: 100%;
+ width: 70%;
+}
+
+.img_personal{
+    width: 200px;
+    height: 150px;
+    margin: 15px;
+    align-items: center;
+   
+    
+}
+
+.img_personal img{
+    margin-top: 30px;
+    width: 100%;
+    border-radius: 50%;
+    height:100%;
+    background-position: center;
+   
+
+}
+.Perfil{
+ margin-top: 50px;
+}
+.Perfil h3{
+text-align: center;
+margin-top: 30px;
+}
+
+.Perfil ul {
+list-style: none;
+margin-top: 15px;
+padding-left: 15px;
+}
+.info_personal{
+background-color: rgb(66, 91, 228);
+color: aliceblue;
+height: 200;
+padding-top: 30px;
+border: 1px solid rgb(214, 214, 214);
 }
 .subtitulo{
-
- text-align: center;
- padding-bottom: 20px;
-}
-.uno{
-    height: 200px;
-    display: flex;
-    background-color: rgb(61, 119, 243);
-    color: white;
-}
-
-.info_personal{
-    width: 70%;
-    
+ font-size: 2rem;
 }
 .info_personal h4,p{
     padding-left:15px;
@@ -54,27 +93,23 @@ height: auto;
  }
  p a:hover{
   color: blue;
+ 
+ }
+
+ .item{
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+    background: rgb(66, 91, 228); 
+    color: white;
+    font-weight: 800
  }
  spam{
   padding-left: 5px;
  }
-.img_personal{
-    width: 30%;
-    height: 100px;
-    margin: 15px;
-   
-    
-}
 
-.img_personal img{
-    margin-top: 30px;
-    width: 100%;
-    border-radius: 50%;
-    height:100%;
-   
-
-}
-.experiencia{
+ .experiencia{
     height: 150px;
     
 }
@@ -109,8 +144,7 @@ height: auto;
   }
  
   
-.habilidades  tr:hover {background-color: rgb(49, 19, 219);
-color: white;}
+
 .interes{
     margin-left: 15px;
    
@@ -127,6 +161,7 @@ color: white;}
     border-bottom: 1px solid #afa8a8;
   }
   .interes  tr:hover {background-color: rgb(49, 19, 219);}
+
  
 .contacto{
 
@@ -145,7 +180,7 @@ height: 200px;
 display: flex;
 flex-direction: column;
 align-items: center;
-background-color: rgb(214, 214, 214);
+background-color: rgb(66, 91, 228); 
 }
 label{
 margin-top: 15px;
@@ -165,9 +200,9 @@ button{
     width: 30%;
     height: 40px;
     border:none;
-    background-color: rgb(15, 18, 211);
+    background-color: white;
     border-radius: 16px;
-    color:white;
+    color:black;
     font-size: 1rem;
     
     
