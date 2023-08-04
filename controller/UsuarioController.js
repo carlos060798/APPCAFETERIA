@@ -70,7 +70,6 @@ const ModificarUsuario = async (req, res) => {
         });
     }
 }
-
 // listar usuarios
  const  ListarUsuarios = async (req, res) => {
 
@@ -101,8 +100,33 @@ const ModificarUsuario = async (req, res) => {
     });
  }
 
+ // eliminar usuario
+const EliminarUsuario = async (req, res) => {
+     const { id } = req.params;
+     try{
+     // eliminar fisicamente de laa base dedatos
+   
+    
+    // const usuario = await Usuario.findByIdAndDelete(id);
+
+     // eliminar cambiando el estado de activo a inactivo
+
+    const usuario = await Usuario.findByIdAndUpdate(id, { estado: false }, { new: true });
+    res.status(200).json({
+        msg: "Usuario eliminado correctamente",
+        id
+    });
+ 
+     }catch (err) {
+            return res.status(500).json({
+                msg: "Error al eliminar el usuario",
+                err
+            });
+     }
+}
 export{
     CrearUsuario,
     ModificarUsuario,
-    ListarUsuarios
+    ListarUsuarios,
+    EliminarUsuario
 }

@@ -1,5 +1,5 @@
 import express from "express";
-import { CrearUsuario, ListarUsuarios, ModificarUsuario } from "../controller/UsuarioController.js";
+import { CrearUsuario, ListarUsuarios, ModificarUsuario, EliminarUsuario } from "../controller/UsuarioController.js";
 import { check } from "express-validator";
 import validaciones from "../middlewares/authData.js";
 import { isROLE } from "../helpers/db-valideitor.js";
@@ -31,5 +31,11 @@ router.put("/:id",[
     check("id", "No es un ID valido").isMongoId(),
     validaciones
 ],ModificarUsuario);
+
+router.delete("/:id",[
+    check("id", "No es un ID valido").isMongoId(),
+    validaciones
+],
+EliminarUsuario);
 
 export default router;
