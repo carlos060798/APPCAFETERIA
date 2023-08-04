@@ -29,4 +29,7 @@ bycscript.hashSync(password, salt)=> para encriptar la constraseña en una sola 
 npm i express-validator
 
 
-check("correo","correo no valido").isEmail()=> para validar el correo se importa desde express-validator
+check("correo","correo no valido").isEmail()=> para validar el correo se importa desde express-validator 
+
+
+# para generar el token
