@@ -2,10 +2,11 @@ import express from "express";
 import { CrearUsuario, ListarUsuarios, ModificarUsuario, EliminarUsuario } from "../controller/UsuarioController.js";
 import { check } from "express-validator";
 import validaciones from "../middlewares/authData.js";
-import { isROLE } from "../helpers/db-valideitor.js";
+import isAdmin  from "../middlewares/adminRole.js";
 import {    inicioSeccion
 }from "../controller/authController.js";
 import validarJWT from "../middlewares/validar-jsonToken.js";
+import { isROLE } from "../helpers/db-valideitor.js";
 
 
 const router = express.Router();
@@ -35,8 +36,11 @@ router.put("/:id",[
     validaciones
 ],ModificarUsuario);
 router.delete("/:id",[
+  
  // se puede validar el token con el middleware validarJWT
   validarJWT,
+  // validar rol de administrador
+  isAdmin,
     check("id", "No es un ID valido").isMongoId(),
     validaciones
 ],
