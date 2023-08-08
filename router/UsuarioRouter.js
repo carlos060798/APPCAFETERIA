@@ -2,7 +2,7 @@ import express from "express";
 import { CrearUsuario, ListarUsuarios, ModificarUsuario, EliminarUsuario } from "../controller/UsuarioController.js";
 import { check } from "express-validator";
 import validaciones from "../middlewares/authData.js";
-import isAdmin  from "../middlewares/adminRole.js";
+import {tieneRole}  from "../middlewares/adminRole.js";
 import {    inicioSeccion
 }from "../controller/authController.js";
 import validarJWT from "../middlewares/validar-jsonToken.js";
@@ -40,7 +40,8 @@ router.delete("/:id",[
  // se puede validar el token con el middleware validarJWT
   validarJWT,
   // validar rol de administrador
-  isAdmin,
+  tieneRole("ADMIN_ROLE","VENTAS_ROLE"), // se puede validar  los roles dentro del array de arreglos
+ // isAdmin,
     check("id", "No es un ID valido").isMongoId(),
     validaciones
 ],

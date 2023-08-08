@@ -18,4 +18,24 @@ const isAdmin = (req,res,next) => {
     next();
 }
 
-export default isAdmin;
+const tieneRole = (...roles) => {
+     return (req,res,next) => {
+        if(!req.usuario){ // si no existe el usuario
+            return res.status(500).json({
+                msg: "Se quiere verificar el rol sin validar el token primero",
+            });
+        }
+        // si el rol no esta en el arreglo de roles
+        if(!roles.includes(req.usuario.rol)){
+            return res.status(401).json({
+                msg: `El servicio requiere uno de estos roles ${roles}`,
+            });
+        }
+       next();
+     }
+}
+
+export {isAdmin,
+    tieneRole
+
+};
