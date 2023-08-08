@@ -3,6 +3,8 @@ import { CrearUsuario, ListarUsuarios, ModificarUsuario, EliminarUsuario } from 
 import { check } from "express-validator";
 import validaciones from "../middlewares/authData.js";
 import { isROLE } from "../helpers/db-valideitor.js";
+import {    inicioSeccion
+}from "../controller/authController.js";
 
 
 const router = express.Router();
@@ -37,5 +39,14 @@ router.delete("/:id",[
     validaciones
 ],
 EliminarUsuario);
+
+// autenticacion  con jwt para el login
+
+router.post("/login", [
+    check("correo", "correo no valido").isEmail(),
+    check("password", "la contraseña es obligatoria").not().isEmpty(),
+    validaciones
+],    inicioSeccion
+)
 
 export default router;
