@@ -1,6 +1,7 @@
 import  express from "express";
-import Usuario from "../models/Usuario.js";
+import Usuario from "../models/UsuarioModel.js";
 import bcrypt from "bcryptjs";
+import generarJWT from "../helpers/generarToken.js";
 
 
 
@@ -36,9 +37,13 @@ const inicioSeccion= async (req, res) => {
 
     // generar el jwt
 
+    const token = await generarJWT(usuario.id);
+
     try{
         res.json({
-            msg: "login ok"
+            msg: "login ok",
+            usuario,
+            token
         });   
     } catch (error) {
         console.log(error);

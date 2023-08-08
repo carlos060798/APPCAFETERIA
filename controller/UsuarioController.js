@@ -1,6 +1,6 @@
 import express from 'express';
 import bycscript from 'bcryptjs';
-import Usuario from '../models/Usuario.js';
+import Usuario from '../models/UsuarioModel.js';
 
 
 // crear usuario
@@ -102,19 +102,19 @@ const ModificarUsuario = async (req, res) => {
 
  // eliminar usuario
 const EliminarUsuario = async (req, res) => {
+
      const { id } = req.params;
+       /* eliminar fisicamente de laa base dedatos   
+     const usuario = await Usuario.findByIdAndDelete(id);
+    eliminar cambiando el estado de activo a inactivo}*/
      try{
-     // eliminar fisicamente de laa base dedatos
-   
-    
-    // const usuario = await Usuario.findByIdAndDelete(id);
-
-     // eliminar cambiando el estado de activo a inactivo
-
     const usuario = await Usuario.findByIdAndUpdate(id, { estado: false }, { new: true });
+    const  usuarioautenticado = req.usuario;
+    
     res.status(200).json({
         msg: "Usuario eliminado correctamente",
-        id
+        usuario,
+        usuarioautenticado
     });
  
      }catch (err) {

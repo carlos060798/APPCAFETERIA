@@ -5,6 +5,7 @@ import validaciones from "../middlewares/authData.js";
 import { isROLE } from "../helpers/db-valideitor.js";
 import {    inicioSeccion
 }from "../controller/authController.js";
+import validarJWT from "../middlewares/validar-jsonToken.js";
 
 
 const router = express.Router();
@@ -33,8 +34,9 @@ router.put("/:id",[
     check("id", "No es un ID valido").isMongoId(),
     validaciones
 ],ModificarUsuario);
-
 router.delete("/:id",[
+ // se puede validar el token con el middleware validarJWT
+  validarJWT,
     check("id", "No es un ID valido").isMongoId(),
     validaciones
 ],

@@ -1,5 +1,4 @@
 //  funcion para validar roles y email
-import Usuario from "../models/Usuario.js";
 import Role from "../models/role.js";
 
 const isROLE=async (rol = "") => {
