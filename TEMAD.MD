@@ -33,3 +33,4 @@ check("correo","correo no valido").isEmail()=> para validar el correo se importa
 
 
 # para generar el token
+npm i jsonwebtoken

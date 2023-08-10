@@ -1,0 +1,2 @@
+# temas 
+quiero desarollar una aplicacion que me permita egenrar contrartos mediante una web en la cual ya cargadoe l formato mediante un form llene los espacios que requeiro personalizar y me genere un boton para descargar el documeto creado  en formato pdf  como lo puedo desarollar tengo conocimientos del mern stack me puedes guiar y ayduar adesarolalr esto 
