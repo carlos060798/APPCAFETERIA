@@ -6,6 +6,7 @@ import UsuarioRouter from './router/UsuarioRouter.js';
 // configuracion de  servidor y bd-conexion
 const app = express();
 app.use(express.json());
+app.use( express.static('public') );
 dotenv.config();
 DB();
 const port = process.env.PORT || 4000;

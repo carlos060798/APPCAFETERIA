@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import { CrearUsuario, ListarUsuarios, ModificarUsuario, EliminarUsuario } from "../controller/UsuarioController.js";
 import { check } from "express-validator";
 import validaciones from "../middlewares/authData.js";
@@ -54,6 +55,9 @@ router.post("/login", [
     check("password", "la contraseña es obligatoria").not().isEmpty(),
     validaciones
 ],    inicioSeccion
-)
+) 
+
+
+
 
 export default router;
