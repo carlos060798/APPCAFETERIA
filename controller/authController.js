@@ -2,7 +2,7 @@ import  express from "express";
 import Usuario from "../models/UsuarioModel.js";
 import bcrypt from "bcryptjs";
 import generarJWT from "../helpers/generarToken.js";
-
+import googleVerify from "../helpers/googleverificar.js";
 
 
 // login
@@ -58,8 +58,10 @@ const inicioSeccion= async (req, res) => {
 
 // validacion con google
 
-const loginGoogle = async (req, res) => {
+const loginAuth= async (req, res) => {
     const {id_token} = req.body;
+try{
+ const googleUser = await googleVerify(id_token);
 
     res.json({
         msg: "login ok",
@@ -67,8 +69,17 @@ const loginGoogle = async (req, res) => {
     });
 
 }
+catch(err){
+    res.status(400).json({
+        msg: "token de google no valido",
+        err
+    });
+}
+
+  
+}
 
 export {
     inicioSeccion,
-    loginGoogle
+    loginAuth
 }

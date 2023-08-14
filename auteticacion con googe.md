@@ -84,3 +84,7 @@ validaciones
 ],loginGoogle
 ) 
 
+12- tomar token de google y verificar si existe en la base de datos se instala la libreria de google-auth-library
+npm install google-auth-library --save
+
+
