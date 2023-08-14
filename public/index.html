@@ -24,7 +24,21 @@
    <script src="https://accounts.google.com/gsi/client" async defer></script>
    <script>
       function handleCredentialResponse(response) {
-         console.log(response.credential);
+         // 
+        const body={id_token: response.credential}
+         fetch("http://localhost:4100/api/auth/google",{
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+         }).then(res => res.json()).then(data => {
+            console.log(data);
+         }).catch(err => {
+            console.log(err);
+         })
+        
+        // console.log(response.credential);
       }
     </script>
 

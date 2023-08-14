@@ -55,6 +55,20 @@ const inicioSeccion= async (req, res) => {
 
 }
 
+
+// validacion con google
+
+const loginGoogle = async (req, res) => {
+    const {id_token} = req.body;
+
+    res.json({
+        msg: "login ok",
+        id_token
+    });
+
+}
+
 export {
-    inicioSeccion
+    inicioSeccion,
+    loginGoogle
 }

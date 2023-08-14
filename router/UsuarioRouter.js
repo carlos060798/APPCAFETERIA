@@ -1,11 +1,8 @@
 import express from "express";
-import path from "path";
 import { CrearUsuario, ListarUsuarios, ModificarUsuario, EliminarUsuario } from "../controller/UsuarioController.js";
 import { check } from "express-validator";
 import validaciones from "../middlewares/authData.js";
 import {tieneRole}  from "../middlewares/adminRole.js";
-import {    inicioSeccion
-}from "../controller/authController.js";
 import validarJWT from "../middlewares/validar-jsonToken.js";
 import { isROLE } from "../helpers/db-valideitor.js";
 
@@ -50,12 +47,8 @@ EliminarUsuario);
 
 // autenticacion  con jwt para el login
 
-router.post("/login", [
-    check("correo", "correo no valido").isEmail(),
-    check("password", "la contraseña es obligatoria").not().isEmpty(),
-    validaciones
-],    inicioSeccion
-) 
+
+
 
 
 

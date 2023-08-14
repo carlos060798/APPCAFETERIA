@@ -53,8 +53,34 @@ ya que es la funcion con la cual se llama cuando la autenticacion es exitosa
 
 
 9 - se crea la funcion en el archivo de app.component.ts
- function handleCredentialResponse(response) {
-            console.log(response.credential);
+     function handleCredentialResponse(response) {
+         //  se obtiene el token de google
+        const body={id_token: response.credential}
+        // se envia el token al backend
+         fetch("http://localhost:4100/api/auth/google",{
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+         }).then(res => res.json()).then(data => {
+            console.log(data);
+         }).catch(err => {
+            console.log(err);
+         })
+        
+        // console.log(response.credential);
+      }
 
-  }
+10- se crea la funcion en el archivo la ruta para la autenticacion y el metodo
+router.post("/google",[check("id_token", "el id_token es necesario").not().isEmpty(),
+validaciones
+],loginGoogle
+) 
+
+11- se crea la funcion en el archivo de controlador
+router.post("/google",[check("id_token", "el id_token es necesario").not().isEmpty(),
+validaciones
+],loginGoogle
+) 
 
