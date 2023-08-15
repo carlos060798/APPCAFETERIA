@@ -19,13 +19,16 @@
    data-text="sign_in_with"
    data-shape="rectangular"
    data-logo_alignment="left">
+   
 </div>
+<button id="loget"> cerrar seccion </button>
 
    <script src="https://accounts.google.com/gsi/client" async defer></script>
    <script>
       function handleCredentialResponse(response) {
          // 
         const body={id_token: response.credential}
+        console.log(body);
          fetch("http://localhost:4100/api/auth/google",{
             method: "POST",
             headers: {
@@ -34,11 +37,25 @@
             body: JSON.stringify(body)
          }).then(res => res.json()).then(data => {
             console.log(data);
+            console.log(data.usuario.correo);
+            localStorage.setItem("email", data.usuario.correo);
          }).catch(err => {
             console.log(err);
          })
         
         // console.log(response.credential);
+      }
+    //  funcion para el cierre de seccion
+      const loget = document.getElementById("loget");
+      loget.onclick= () => {
+         console.log(google.accounts.id);
+         google.accounts.id.disableAutoSelect();
+
+         google.accounts.id.revoke(localStorage.getItem("email"), done => {
+            localStorage.clear();
+            location.reload();
+         })
+       
       }
     </script>
 

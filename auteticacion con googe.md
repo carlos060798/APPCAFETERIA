@@ -87,4 +87,42 @@ validaciones
 12- tomar token de google y verificar si existe en la base de datos se instala la libreria de google-auth-library
 npm install google-auth-library --save
 
+se crea la funcion para verificar el token
+const client = new OAuth2Client(process.env.GOOGLECLIENTE);
+async function  googleVerify(token= '') {
+  const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLECLIENTE, 
+  });
+  
+    const payload = ticket.getPayload();
+    
+    console.log(payload);
+}
+
+export default googleVerify;  
+
+
+14- se crea el controlador final para la autenticacion con google
+const loginAuth= async (req, res) => {
+    const {id_token} = req.body;
+try{
+ const {name, email,picture } = await googleVerify(id_token);
+
+    res.json({
+        msg: "login ok",
+        id_token
+    });
+
+}
+catch(err){
+    res.status(400).json({
+        msg: "token de google no valido",
+        err
+    });
+}
+
+  
+}
+
 

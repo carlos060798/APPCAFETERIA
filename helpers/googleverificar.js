@@ -7,9 +7,12 @@ async function  googleVerify(token= '') {
       audience: process.env.GOOGLECLIENTE, 
   });
   
-    const payload = ticket.getPayload();
+    const {name,email,picture} = ticket.getPayload();
     
-    console.log(payload);
+   return {
+    nombre:name,
+    correo:email,
+     img:picture};
 }
 
 export default googleVerify;

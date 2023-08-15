@@ -1,9 +1,8 @@
 import  express from "express";
-import Usuario from "../models/UsuarioModel.js";
 import bcrypt from "bcryptjs";
 import generarJWT from "../helpers/generarToken.js";
 import googleVerify from "../helpers/googleverificar.js";
-
+import Usuario from '../models/UsuarioModel.js';
 
 // login
 
@@ -61,11 +60,47 @@ const inicioSeccion= async (req, res) => {
 const loginAuth= async (req, res) => {
     const {id_token} = req.body;
 try{
- const googleUser = await googleVerify(id_token);
+ const {nombre,correo,img} = await googleVerify(id_token);
 
+ // registarr usuario con google
+
+ let usuario  = await Usuario.findOne({correo});
+
+
+
+ // validar si el usuario existe
+   
+    if(!usuario){
+        // si no existe el usuario se crea con los datos de google
+    let  data={
+            nombre,
+            correo,
+            password: ":P",
+            img,
+            google: true
+    }
+
+    
+    // guardar en la base de datos
+    usuario = new Usuario(data);
+    await usuario.save();
+    console.log(usuario);
+    }
+
+    // si el usuario en la base de datos esta en false esta  desactivado
+
+    if(!usuario.estado){
+        return res.status(401).json({
+            msg: "usuario bloqueado"
+        });
+    }
+    
+    // generar el jwt
+    const token = await generarJWT(usuario.id);
     res.json({
         msg: "login ok",
-        id_token
+        usuario,
+        token
     });
 
 }
