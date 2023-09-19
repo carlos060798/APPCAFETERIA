@@ -22,4 +22,4 @@ const CategoriaSchema = new Schema({
 
 });
 
- export default mongoose.model("Role", roleSchema);
+ export default mongoose.model("Categoria", CategoriaSchema );
