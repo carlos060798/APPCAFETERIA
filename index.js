@@ -4,6 +4,7 @@ import DB from './db/bd-conexion.js';
 import UsuarioRouter from './router/UsuarioRouter.js';
 import AuthRouter from './router/AuthRouter.js';
 import CategoriasRouter from './router/CategoriasRouter.js';
+import ProductoRouter from './router/ProductoRouter.js';
 
 // configuracion de  servidor y bd-conexion
 const app = express();
@@ -18,6 +19,7 @@ const port = process.env.PORT || 4000;
 app.use("/api/usuarios",UsuarioRouter );
 app.use("/api/auth",AuthRouter );
 app.use("/api/categorias",CategoriasRouter );
+app.use("/api/productos",ProductoRouter );
 
 
 
