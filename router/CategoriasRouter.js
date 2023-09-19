@@ -4,29 +4,38 @@ import express from "express";
 import validarJWT from "../middlewares/validar-jsonToken.js";
 import { check } from "express-validator";
 import validaciones from "../middlewares/authData.js";
-import { CrearCategory } from "../controller/CategoriaController.js";
+import {
+  CrearCategory,
+  ObtenerCategory,
+  ObtenerCategoryById,
+} from "../controller/CategoriaController.js";
+import { existeCategoria } from "../helpers/db-valideitor.js";
 
 const router = express.Router();
 
 // rutas de crud
 
 // ruta para crear categoria
-router.post("/",
+router.post(
+  "/",
   [
     validarJWT,
     check("nombre", " el mombre es obligatorio").not().isEmpty(),
     validaciones,
-  ], CrearCategory
-  
- 
+  ],
+  CrearCategory
 );
-router.get("/", (req, res) => {
-  res.send("listar categorias");
-});
-
-router.get("/:id", (req, res) => {
-  res.send("listar categorias");
-});
+// ruta para obtener categorias por listados y por id
+router.get("/", ObtenerCategory);
+router.get(
+  "/:id",
+  [
+    check("id", "el id no es valido").isMongoId(),
+    check("id").custom(existeCategoria),
+    validaciones,
+  ],
+  ObtenerCategoryById
+);
 
 router.put("/:id", (req, res) => {
   res.send("actualizar categorias");
