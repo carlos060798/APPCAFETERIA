@@ -8,8 +8,10 @@ import {
   CrearCategory,
   ObtenerCategory,
   ObtenerCategoryById,
+  ActualizarCategory,
+  BorrarCategory
 } from "../controller/CategoriaController.js";
-import { existeCategoria } from "../helpers/db-valideitor.js";
+import { existeCategoria, isROLE } from "../helpers/db-valideitor.js";
 
 const router = express.Router();
 
@@ -37,12 +39,24 @@ router.get(
   ObtenerCategoryById
 );
 
-router.put("/:id", (req, res) => {
-  res.send("actualizar categorias");
-});
+router.put("/:id", [
+  validarJWT,
+  check("nombre", "el nombre es obligatorio").not().isEmpty(),
+  check("id").custom(existeCategoria),
+  validaciones,
+], ActualizarCategory);
 
-router.delete("/:id", (req, res) => {
-  res.send("eliminar categorias");
-});
+
+router.delete("/:id",[validarJWT,
+  check("id", "el id no es valido").isMongoId(),
+  check("id").custom(existeCategoria),
+  validaciones
+], BorrarCategory) 
 
 export default router;
+/*
+[validarJWT,
+  isROLE,
+  check("id", "el id no es valido").isMongoId(),
+  check("id").custom(existeCategoria),
+  validaciones], BorrarCategory); */

@@ -30,7 +30,7 @@ const CrearCategory = async (req, res) => {
 };
 
 const ObtenerCategory = async (req, res) => {
-  // obtener categorias por listados
+  // obtener categorias por listados cuyo estado no se false
   
   const { limite = 5, desde = 0 } = req.query;
   const query = { estado: true };
@@ -48,7 +48,7 @@ const ObtenerCategory = async (req, res) => {
     total, categoria
   });
 };
-const ObtenerCategoryById = async (req, res) => {
+const ObtenerCategoryById = async (req, res) => { // obtener categoria por id
   const { id } = req.params;
   const categoria = await Categoria.findById(id).populate(
     "usuario",
@@ -58,6 +58,40 @@ const ObtenerCategoryById = async (req, res) => {
     categoria,
   });
 };
-export { CrearCategory, ObtenerCategory, ObtenerCategoryById
 
-}; // retornar respuesta deforma simultania las promesas y recortar tiempos de respuesta
+const ActualizarCategory = async (req, res) => {
+  const { id } = req.params;
+  const { estado, usuario, ...data } = req.body;
+
+  data.nombre = data.nombre.toUpperCase();
+  data.usuario = req.usuario._id;
+
+  const categoria =  await Categoria.findByIdAndUpdate(id, data, {new: true});
+  res.status(200).json({
+    categoria,
+  });
+}
+
+const BorrarCategory = async (req, res) => {  // cambiar el estado de la categoria a false
+
+  const { id } = req.params;
+ 
+  try{
+    const categoriaBorrada= await Categoria.findByIdAndUpdate(id, { estado: false }, {new: true});
+    res.status(200).json({
+      categoriaBorrada
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      msg: "Error al borrar la categoria",
+      error
+    });
+  }
+}
+
+
+export { CrearCategory, ObtenerCategory, ObtenerCategoryById,
+  ActualizarCategory, BorrarCategory
+
+}; 
