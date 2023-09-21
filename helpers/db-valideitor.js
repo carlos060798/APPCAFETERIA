@@ -1,5 +1,6 @@
 //  funcion para validar roles y email
 import Categoria from "../models/Categoria.js";
+import Producto from "../models/Producto.js";
 import Role from "../models/role.js";
 
 const isROLE=async (rol = "") => {
@@ -14,8 +15,14 @@ const isROLE=async (rol = "") => {
         throw new Error(`el id ${id} no existe`);
  }
 
+ //  function para validar si existe el producto
+  const existeProducto= async (id) => {
+      const existeProducto = await Producto.findById(id);
+      if (!existeProducto)
+        throw new Error(`el id ${id} no existe`);}
 export{
     isROLE,
-    existeCategoria
+    existeCategoria,
+    existeProducto
     
 }
